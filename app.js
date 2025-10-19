@@ -6,9 +6,9 @@ let deferredPrompt;
 
 // GitHub Configuration
 const GITHUB_CONFIG = {
-    owner: 'YOUR_GITHUB_USERNAME',  // Replace with your GitHub username
+    owner: 'saumenray-afk',  // Replace with your GitHub username
     repo: 'rsv-survey-responses',    // Replace with your repository name
-    token: 'YOUR_GITHUB_TOKEN',      // Replace with your GitHub Personal Access Token
+    token: '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',      // Replace with your GitHub Personal Access Token
     branch: 'main'
 };
 
