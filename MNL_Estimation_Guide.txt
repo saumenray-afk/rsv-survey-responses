@@ -1,0 +1,233 @@
+RSV CLUB HOUSE CBC - MNL ESTIMATION GUIDE
+(4 Attributes Only)
+
+═══════════════════════════════════════════════════════════════
+ATTRIBUTES AND LEVELS
+═══════════════════════════════════════════════════════════════
+
+ATTRIBUTE 1: FACILITIES
+────────────────────────
+Level 1: Gym Only
+Level 2: Swimming Pool Only
+Level 3: Badminton Court Only
+Level 4: Gym + Swimming Pool
+Level 5: Gym + Badminton Court
+Level 6: Swimming Pool + Badminton Court
+Level 7: Gym + Swimming Pool + Badminton Court
+Level 8: All Facilities (Gym + Pool + Badminton + Table Tennis + Billiards)
+
+ATTRIBUTE 2: PACKAGE TYPE
+────────────────────────
+Level 1: Individual
+Level 2: Couple (2 Adults)
+Level 3: Family (2 Adults + 2 Kids)
+
+ATTRIBUTE 3: TIMINGS
+────────────────────────
+Level 1: Morning & Evening Only (6-9 AM, 3-6 PM)
+Level 2: Extended Hours (6 AM - 9 PM)
+Level 3: All Day Access (6 AM - 10 PM)
+
+ATTRIBUTE 4: GUEST ACCESS
+────────────────────────
+Level 1: Not Allowed
+Level 2: Allowed at ₹200 per visit
+Level 3: 2 Free Guest Passes per month
+
+═══════════════════════════════════════════════════════════════
+EFFECTS CODING FOR MNL ESTIMATION
+═══════════════════════════════════════════════════════════════
+
+FACILITIES (7 dummy variables, F1-F7)
+────────────────────────────────────────────
+
+                                    F1  F2  F3  F4  F5  F6  F7
+Gym Only                             1   0   0   0   0   0   0
+Swimming Pool Only                   0   1   0   0   0   0   0
+Badminton Court Only                 0   0   1   0   0   0   0
+Gym + Swimming Pool                  0   0   0   1   0   0   0
+Gym + Badminton Court                0   0   0   0   1   0   0
+Swimming Pool + Badminton Court      0   0   0   0   0   1   0
+Gym + Pool + Badminton Court         0   0   0   0   0   0   1
+All Facilities (reference)          -1  -1  -1  -1  -1  -1  -1
+
+
+PACKAGE TYPE (2 dummy variables, P1-P2)
+────────────────────────────────────────────
+
+                P1  P2
+Individual       1   0
+Couple           0   1
+Family (ref)    -1  -1
+
+
+TIMINGS (2 dummy variables, T1-T2)
+────────────────────────────────────────────
+
+                            T1  T2
+Morning & Evening Only       1   0
+Extended Hours               0   1
+All Day Access (ref)        -1  -1
+
+
+GUEST ACCESS (2 dummy variables, G1-G2)
+────────────────────────────────────────────
+
+                            G1  G2
+Not Allowed                  1   0
+Allowed at ₹200/visit        0   1
+2 Free Passes/month (ref)   -1  -1
+
+
+NONE ALTERNATIVE
+────────────────────────────────────────────
+All variables = 0
+Can add Alternative Specific Constant (ASC_None) = 1
+
+═══════════════════════════════════════════════════════════════
+MNL MODEL SPECIFICATION
+═══════════════════════════════════════════════════════════════
+
+Utility Function:
+
+U_j = β₁·F1 + β₂·F2 + β₃·F3 + β₄·F4 + β₅·F5 + β₆·F6 + β₇·F7
+    + β₈·P1 + β₉·P2
+    + β₁₀·T1 + β₁₁·T2
+    + β₁₂·G1 + β₁₃·G2
+    + ε
+
+Where ε ~ Gumbel distribution
+
+Choice Probability:
+
+P(alternative j) = exp(U_j) / Σ exp(U_k)  for all k alternatives
+
+═══════════════════════════════════════════════════════════════
+DATA STRUCTURE FOR ESTIMATION
+═══════════════════════════════════════════════════════════════
+
+LONG FORMAT (Required for MNL):
+
+resp_id | choice_set | alt | chosen | F1 | F2 | F3 | F4 | F5 | F6 | F7 | P1 | P2 | T1 | T2 | G1 | G2
+--------|------------|-----|--------|----|----|----|----|----|----|----|----|----|----|----|----|----
+1       | 1          | A   | 0      | 1  | 0  | 0  | 0  | 0  | 0  | 0  | 1  | 0  | 1  | 0  | 1  | 0
+1       | 1          | B   | 1      | 0  | 1  | 0  | 0  | 0  | 0  | 0  | 0  | 1  | 0  | 1  | 0  | 1
+1       | 1          | C   | 0      | 0  | 0  | 0  | 1  | 0  | 0  | 0  |-1  |-1  |-1  |-1  |-1  |-1
+1       | 1          | None| 0      | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0
+1       | 2          | A   | 0      | 0  | 0  | 1  | 0  | 0  | 0  | 0  |-1  |-1  |-1  |-1  | 0  | 1
+...
+
+Each respondent: 16 choice sets × 4 alternatives = 64 rows
+For N respondents: 64N rows total
+
+═══════════════════════════════════════════════════════════════
+INTERPRETATION OF COEFFICIENTS
+═══════════════════════════════════════════════════════════════
+
+Positive β = Increases utility (more preferred)
+Negative β = Decreases utility (less preferred)
+Magnitude = Strength of preference
+
+Example interpretation:
+- If β₁ (Gym Only) = 0.5 → Gym Only increases utility by 0.5 vs. All Facilities
+- If β₈ (Individual) = -0.3 → Individual decreases utility by 0.3 vs. Family
+- If β₁₀ (Morning & Evening) = -0.8 → Restricted timings decrease utility by 0.8 vs. All Day
+
+═══════════════════════════════════════════════════════════════
+PART-WORTH UTILITIES CALCULATION
+═══════════════════════════════════════════════════════════════
+
+For reference level (coded as -1):
+Part-worth = -(sum of all other betas in that attribute)
+
+Example for FACILITIES:
+If β₁=0.2, β₂=0.3, β₃=-0.1, β₄=0.5, β₅=0.4, β₆=0.3, β₇=0.6
+
+Part-worth for "All Facilities" = -(0.2+0.3-0.1+0.5+0.4+0.3+0.6) = -2.2
+
+═══════════════════════════════════════════════════════════════
+SAMPLE SIZE REQUIREMENTS
+═══════════════════════════════════════════════════════════════
+
+Minimum sample size rule of thumb:
+N > (# parameters × 10) / (# alternatives - 1)
+
+Parameters = 13 (F1-F7 + P1-P2 + T1-T2 + G1-G2)
+Alternatives per choice set = 4 (A, B, C, None)
+
+Minimum N > (13 × 10) / 3 = 43 respondents
+
+Recommended: 100-150 respondents for stable estimates
+
+═══════════════════════════════════════════════════════════════
+SOFTWARE FOR ESTIMATION
+═══════════════════════════════════════════════════════════════
+
+R packages:
+- mlogit
+- survival (clogit function)
+- apollo
+
+Python:
+- statsmodels (MNLogit)
+- pylogit
+- xlogit
+
+Stata:
+- clogit
+- asclogit
+
+Excel:
+- Sawtooth Software (commercial)
+- Manual maximum likelihood (advanced)
+
+═══════════════════════════════════════════════════════════════
+R CODE EXAMPLE
+═══════════════════════════════════════════════════════════════
+
+library(mlogit)
+
+# Read data
+data <- read.csv("cbc_responses.csv")
+
+# Convert to mlogit format
+data_mlogit <- dfidx(data, 
+                     idx = list(c("choice_set", "resp_id"), "alt"),
+                     choice = "chosen")
+
+# Estimate MNL model
+model <- mlogit(chosen ~ F1 + F2 + F3 + F4 + F5 + F6 + F7 + 
+                         P1 + P2 + 
+                         T1 + T2 + 
+                         G1 + G2 | 0, 
+                data = data_mlogit)
+
+# View results
+summary(model)
+
+# Calculate part-worths
+partworths <- coef(model)
+
+# Calculate importance scores
+# Importance = (max part-worth - min part-worth) for each attribute
+
+═══════════════════════════════════════════════════════════════
+DESIGN PROPERTIES
+═══════════════════════════════════════════════════════════════
+
+Number of Choice Sets: 16
+Alternatives per Set: 3 + None
+Total Profiles: 48 unique combinations
+
+Design Type: Fractional factorial (near-orthogonal)
+Balance: Each level appears approximately equal times across choice sets
+Minimal Overlap: Levels rarely repeat within same choice set
+
+This design allows estimation of:
+✓ Main effects for all 4 attributes
+✓ Part-worth utilities for each level
+✓ Relative importance of attributes
+✓ Market share simulations
+✓ Willingness to accept trade-offs
+
+═══════════════════════════════════════════════════════════════

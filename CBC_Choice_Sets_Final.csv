@@ -1,0 +1,161 @@
+Choice Set,Option A,Option B,Option C,None
+1,"Facilities: Gym Only
+Package Type: Individual
+Timings: Morning & Evening Only
+Guest Access: Not Allowed","Facilities: Swimming Pool Only
+Package Type: Couple
+Timings: Extended Hours
+Guest Access: Allowed at ₹200/visit","Facilities: Gym + Swimming Pool
+Package Type: Family
+Timings: All Day Access
+Guest Access: 2 Free passes/month",□
+2,"Facilities: Badminton Court Only
+Package Type: Family
+Timings: All Day Access
+Guest Access: Allowed at ₹200/visit","Facilities: Gym + Badminton Court
+Package Type: Individual
+Timings: Morning & Evening Only
+Guest Access: 2 Free passes/month","Facilities: Swimming Pool + Badminton Court
+Package Type: Couple
+Timings: Extended Hours
+Guest Access: Not Allowed",□
+3,"Facilities: Gym + Swimming Pool
+Package Type: Couple
+Timings: Extended Hours
+Guest Access: Not Allowed","Facilities: All Facilities
+Package Type: Individual
+Timings: All Day Access
+Guest Access: 2 Free passes/month","Facilities: Gym Only
+Package Type: Family
+Timings: Morning & Evening Only
+Guest Access: Allowed at ₹200/visit",□
+4,"Facilities: Swimming Pool Only
+Package Type: Individual
+Timings: All Day Access
+Guest Access: 2 Free passes/month","Facilities: Gym + Swimming Pool + Badminton
+Package Type: Couple
+Timings: Morning & Evening Only
+Guest Access: Not Allowed","Facilities: Badminton Court Only
+Package Type: Family
+Timings: Extended Hours
+Guest Access: Allowed at ₹200/visit",□
+5,"Facilities: Gym + Badminton Court
+Package Type: Family
+Timings: Morning & Evening Only
+Guest Access: Allowed at ₹200/visit","Facilities: Swimming Pool Only
+Package Type: Individual
+Timings: Extended Hours
+Guest Access: Not Allowed","Facilities: All Facilities
+Package Type: Couple
+Timings: All Day Access
+Guest Access: 2 Free passes/month",□
+6,"Facilities: All Facilities
+Package Type: Individual
+Timings: Extended Hours
+Guest Access: Allowed at ₹200/visit","Facilities: Gym + Swimming Pool
+Package Type: Family
+Timings: All Day Access
+Guest Access: Not Allowed","Facilities: Swimming Pool + Badminton Court
+Package Type: Couple
+Timings: Morning & Evening Only
+Guest Access: 2 Free passes/month",□
+7,"Facilities: Gym Only
+Package Type: Couple
+Timings: All Day Access
+Guest Access: 2 Free passes/month","Facilities: Badminton Court Only
+Package Type: Individual
+Timings: Morning & Evening Only
+Guest Access: Allowed at ₹200/visit","Facilities: Gym + Swimming Pool + Badminton
+Package Type: Family
+Timings: Extended Hours
+Guest Access: Not Allowed",□
+8,"Facilities: Swimming Pool + Badminton Court
+Package Type: Family
+Timings: Morning & Evening Only
+Guest Access: Not Allowed","Facilities: Gym + Badminton Court
+Package Type: Couple
+Timings: All Day Access
+Guest Access: Allowed at ₹200/visit","Facilities: All Facilities
+Package Type: Individual
+Timings: Extended Hours
+Guest Access: 2 Free passes/month",□
+9,"Facilities: Gym + Swimming Pool
+Package Type: Individual
+Timings: Extended Hours
+Guest Access: 2 Free passes/month","Facilities: Gym Only
+Package Type: Family
+Timings: All Day Access
+Guest Access: Not Allowed","Facilities: Swimming Pool Only
+Package Type: Couple
+Timings: Morning & Evening Only
+Guest Access: Allowed at ₹200/visit",□
+10,"Facilities: Badminton Court Only
+Package Type: Couple
+Timings: Extended Hours
+Guest Access: Not Allowed","Facilities: Gym + Swimming Pool + Badminton
+Package Type: Individual
+Timings: All Day Access
+Guest Access: Allowed at ₹200/visit","Facilities: Gym + Badminton Court
+Package Type: Family
+Timings: Morning & Evening Only
+Guest Access: 2 Free passes/month",□
+11,"Facilities: All Facilities
+Package Type: Family
+Timings: All Day Access
+Guest Access: Not Allowed","Facilities: Swimming Pool + Badminton Court
+Package Type: Individual
+Timings: Morning & Evening Only
+Guest Access: Allowed at ₹200/visit","Facilities: Gym Only
+Package Type: Couple
+Timings: Extended Hours
+Guest Access: 2 Free passes/month",□
+12,"Facilities: Gym + Swimming Pool
+Package Type: Couple
+Timings: Morning & Evening Only
+Guest Access: Allowed at ₹200/visit","Facilities: Badminton Court Only
+Package Type: Family
+Timings: Extended Hours
+Guest Access: 2 Free passes/month","Facilities: Swimming Pool Only
+Package Type: Individual
+Timings: All Day Access
+Guest Access: Not Allowed",□
+13,"Facilities: Gym + Badminton Court
+Package Type: Individual
+Timings: All Day Access
+Guest Access: 2 Free passes/month","Facilities: All Facilities
+Package Type: Couple
+Timings: Morning & Evening Only
+Guest Access: Not Allowed","Facilities: Gym + Swimming Pool + Badminton
+Package Type: Family
+Timings: Extended Hours
+Guest Access: Allowed at ₹200/visit",□
+14,"Facilities: Swimming Pool Only
+Package Type: Family
+Timings: Extended Hours
+Guest Access: Not Allowed","Facilities: Gym Only
+Package Type: Individual
+Timings: All Day Access
+Guest Access: Allowed at ₹200/visit","Facilities: Swimming Pool + Badminton Court
+Package Type: Couple
+Timings: Morning & Evening Only
+Guest Access: 2 Free passes/month",□
+15,"Facilities: Gym + Swimming Pool + Badminton
+Package Type: Couple
+Timings: All Day Access
+Guest Access: Not Allowed","Facilities: Gym + Swimming Pool
+Package Type: Individual
+Timings: Morning & Evening Only
+Guest Access: 2 Free passes/month","Facilities: Badminton Court Only
+Package Type: Family
+Timings: Extended Hours
+Guest Access: Allowed at ₹200/visit",□
+16,"Facilities: All Facilities
+Package Type: Individual
+Timings: Morning & Evening Only
+Guest Access: Not Allowed","Facilities: Gym + Badminton Court
+Package Type: Couple
+Timings: Extended Hours
+Guest Access: Allowed at ₹200/visit","Facilities: Swimming Pool Only
+Package Type: Family
+Timings: All Day Access
+Guest Access: 2 Free passes/month",□

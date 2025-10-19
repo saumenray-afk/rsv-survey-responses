@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="description" content="RSV Club House Resident Survey">
+    <title>RSV Club House Survey</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --success: #10b981;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+            color: var(--gray-900);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--gray-600);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .progress-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .progress-bg {
+            background: var(--gray-200);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-hidden {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .choice-set {
+            margin-bottom: 32px;
+        }
+
+        .choice-set-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .option-card {
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--gray-50);
+            position: relative;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background: #eff6ff;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+        }
+
+        .option-card input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .option-header {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .option-card.selected .option-header {
+            color: var(--primary-dark);
+        }
+
+        .attribute-row {
+            display: flex;
+            font-size: 13px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .attribute-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            min-width: 100px;
+        }
+
+        .attribute-value {
+            color: var(--gray-600);
+            flex: 1;
+        }
+
+        .none-option {
+            text-align: center;
+            padding: 16px;
+            border: 2px dashed var(--gray-300);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        .none-option:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: #fef2f2;
+        }
+
+        .none-option.selected {
+            border-color: var(--danger);
+            border-style: solid;
+            background: #fef2f2;
+            color: var(--danger);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+        }
+
+        .error-message {
+            background: #fee;
+            border: 2px solid var(--danger);
+            color: var(--danger);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success-screen {
+            text-align: center;
+            padding: 40px 24px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .success-icon::after {
+            content: '✓';
+            font-size: 48px;
+            color: white;
+        }
+
+        .success-screen h2 {
+            font-size: 24px;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+
+        .success-screen p {
+            color: var(--gray-600);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .install-prompt {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: none;
+        }
+
+        .install-prompt.show {
+            display: block;
+        }
+
+        .install-prompt button {
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px;
+            }
+
+            .card {
+                padding: 20px 16px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="install-prompt" id="installPrompt">
+            <strong>📱 Install App</strong>
+            <p style="margin: 8px 0; color: var(--gray-600); font-size: 14px;">
+                Add this survey to your home screen for easy access!
+            </p>
+            <button class="btn-primary" onclick="installApp()">Install</button>
+        </div>
+
+        <div class="header">
+            <h1>RSV Club House Survey</h1>
+            <p>Help us design the perfect club house for our community</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-text">
+                <span id="currentStep">1</span> of <span id="totalSteps">18</span> completed
+            </div>
+            <div class="progress-bg">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Resident Info Section -->
+        <div class="card" id="residentInfoSection">
+            <h2 style="font-size: 20px; margin-bottom: 20px; color: var(--gray-900);">Resident Information</h2>
+            <div class="error-message" id="errorMessage"></div>
+            
+            <div class="form-group">
+                <label for="villaNo">Villa Number *</label>
+                <input type="text" id="villaNo" placeholder="e.g., A-101" required>
+            </div>
+
+            <div class="form-group">
+                <label for="residentName">Name *</label>
+                <input type="text" id="residentName" placeholder="Your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNo">Phone Number *</label>
+                <input type="tel" id="phoneNo" placeholder="10-digit mobile number" required>
+            </div>
+
+            <button class="btn-primary" onclick="startSurvey()" style="width: 100%;">
+                Start Survey
+            </button>
+        </div>
+
+        <!-- Survey Section -->
+        <div class="card section-hidden" id="surveySection">
+            <div class="error-message" id="surveyError"></div>
+            <div id="choiceSetsContainer"></div>
+            
+            <div class="button-group">
+                <button class="btn-secondary section-hidden" id="prevBtn" onclick="previousChoice()">
+                    ← Previous
+                </button>
+                <button class="btn-primary" id="nextBtn" onclick="nextChoice()">
+                    Next →
+                </button>
+            </div>
+        </div>
+
+        <!-- Success Section -->
+        <div class="card section-hidden" id="successSection">
+            <div class="success-screen">
+                <div class="success-icon"></div>
+                <h2>Thank You!</h2>
+                <p>Your response has been recorded successfully. We appreciate your valuable feedback for RSV Club House planning.</p>
+                <p style="margin-top: 16px; font-size: 14px; color: var(--gray-500);">
+                    Response ID: <span id="responseId"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="survey-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
